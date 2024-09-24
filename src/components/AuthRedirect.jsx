@@ -16,7 +16,7 @@ const AuthRedirect = ({ lang }) => {
   const redirectUrl = `/${lang}/login?redirectTo=${pathname}`
   const login = `/${lang}/login`
   const homePage = getLocalizedUrl(themeConfig.homePageUrl, lang)
-  return redirect(homePage)
+  return redirect(redirectUrl)
   // return redirect(pathname === login ? login : pathname === homePage ? login : redirectUrl)
 }
 
