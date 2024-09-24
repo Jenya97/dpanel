@@ -9,15 +9,29 @@ import themeConfig from '@configs/themeConfig'
 // Util Imports
 import { getLocalizedUrl } from '@/utils/i18n'
 
+// Simulating a function that checks if the user is authenticated
+// Replace this with your actual authentication check logic
+const isAuthenticated = () => {
+  // Example: return true if authenticated, false if not
+  return false;
+};
+
 const AuthRedirect = ({ lang }) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
-  // ℹ️ Bring me `lang`
-  const redirectUrl = `/${lang}/login?redirectTo=${pathname}`
-  const login = `/${lang}/login`
-  const homePage = getLocalizedUrl(themeConfig.homePageUrl, lang)
+  // Paths
+  const redirectUrl = `/${lang}/login?redirectTo=${pathname}`;
+  const login = `/${lang}/login`;
+  const homePage = getLocalizedUrl(themeConfig.homePageUrl, lang);
 
-  return redirect(pathname === login ? login : pathname === homePage ? login : redirectUrl)
-}
+  // Check if user is authenticated
+  if (!isAuthenticated()) {
+    // Redirect to login if user is not authenticated
+    return redirect(redirectUrl);
+  }
 
-export default AuthRedirect
+  // If the user is authenticated, no redirection is needed
+  return null;
+};
+
+export default AuthRedirect;
