@@ -1,4 +1,3 @@
-// Third-party Imports
 import NextAuth from 'next-auth'
 
 // Lib Imports
